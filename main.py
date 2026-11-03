@@ -26,6 +26,14 @@ MAX_UPLOAD_BYTES = 250 * 1024 * 1024  # limit per file, local demo
 
 app = FastAPI(title='DengarAI Processing API', version='1.0.0',
               description='Runs five existing Python stages sequentially. Local development only.')
+@app.get("/")
+def home():
+    return {
+        "service": "DengarAI FastAPI",
+        "status": "online",
+        "documentation": "/docs",
+        "health": "/health"
+    }
 jobs: dict[str, dict] = {}
 lock = threading.Lock()
 
